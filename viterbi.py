@@ -93,7 +93,8 @@ def generate_seq(states, obs_set, P, Q, prior, n):
     estimated sequence, via the percent of states wrong.
 """
 def calc_error(state_seq, est_seq):
-    assert len(state_seq) == len(est_seq), "Sequences must be the same!"
+    assert len(state_seq) == len(est_seq), \
+           "Sequences must be the same length!"
     wrong = 0.0
     for act, est in zip(state_seq, est_seq):
         if act != est: wrong += 1
@@ -101,6 +102,8 @@ def calc_error(state_seq, est_seq):
 
 
 def example():
+    # In this example, we assume two states, with observations modeled
+    # as a binary symmetric channel with error epsilon
     states = ['a', 'b']
     obs_set = {0,1}
     alpha = 0.5
